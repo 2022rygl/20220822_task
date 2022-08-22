@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 作业2: 笔试原题
+      // function process( url ){
+      // 	 //.... 使用reduce
+      // }
+
+      // process(http://www.baidu.com/?name=zhangsan&age=18&sex=nan#)
+      // 输出:  { name:"zhangsan",age:18,sex:nan }
+      let url = 'http://www.baidu.com/?name=zhangsan&age=18&sex=nan#'
+      const getQuery = url => {
+        // const str1 = url.substr(url.indexOf('?') + 1)
+        // const str2 = url.substr(url.indexOf('#') + 1, 1)  substring(start,stop)
+        const str = url.substring(url.indexOf('?') + 1, url.indexOf('#'))
+        const arr = str.split('&')
+        const res = arr.reduce((obj, item) => {
+          const itemArr = item.split('=')
+          obj[itemArr[0]] = itemArr[1]
+          return obj
+        }, {})
+        return res
+      }
+      console.log(getQuery(url))
+    </script>
+  </body>
+</html>
